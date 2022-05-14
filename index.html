@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" http-equiv="CONTENT-TYPE" content="text/html,charset=UTF-8">
+  <link rel="stylesheet" href="styles/style.css"/>
+  <script type="text/javascript" src="scripts/script.js"></script>
+  <title>weather</title>
+</head>
+<body>
+  <header>
+    <img src="logo.png" height="100px" width="100px" alt="logo" />
+    <h1>
+      easyWeather
+    </h1>
+    <p id="p"> </p>
+    <p> </p>
+  </header>
+  <main>
+    <div>
+      <h2>Search weather</h2>
+      <form id="form" action="" onsubmit="stopValidation()" method="get">
+        <input type="search" id="search" placeholder="search by city name, latitude | longitude and postcode" required="required"/>
+        <button type="submit" onClick="validate()">search</button>
+      </form>
+    </div>
+    <div>
+    </div>
+  </main>
+</body>
+</html>
