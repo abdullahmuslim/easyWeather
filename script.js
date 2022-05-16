@@ -1,3 +1,4 @@
+
 var key = "8c07459f9be1805e0dcad855c72806f8";
 var baseUrl = "https://api.openweathermap.org/data/2.5/weather?";
 
@@ -8,39 +9,43 @@ var stage3;
 var url1;
 var weather1;
 
-const interval1 = setInterval(createLocalUrl, 1000);
-const interval2 = setInterval(localWeather, 1000);
-const interval3 = setInterval(showWeather, 1000);
+const interval1 = setInterval(createLocalUrl, 3000);
+
+
 
 const successCallback = (position) => {
   location = position;
+  alert(position);
   stage1 = true;
 };
 const errorCallback = (error) => {
   alert(error);
-  console.log(error);
 };
 
-
+navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
 
 function createLocalUrl(){
   if (stage1){
     let lat = location['coords']['latitude'];
     let lon = location['coords']['longitude'];
+    alert(location);
     url1 = `${baseUrl}&lat=${lat}&lon=${lon}&appid=${key}`;
     stage2 = true;
-    clearInterval(interval1);
+    const interval2 = setInterval(localWeather, 6000);
   }
 }
 function localWeather(){
   if (stage2){
-    weather1 = getWeather(url1);
+    clearInterval(interval1);
+    weather1 = getWeather('https://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid=8c07459f9be1805e0dcad855c72806f8');
+    alert(wheather1);
     stage3 = true;
-    clearInterval(interval2);
+    const interval3 = setInterval(showWeather, 9000);
   }
 }
 function showWeather(){
   if (stage3){
+    clearInterval(interval2);
     name = document.getElementById("name");
     name.innerHTML += ` weather1['name']`;
     clearInterval(interval3);
@@ -49,10 +54,9 @@ function showWeather(){
 
 function getData(url){
   fetch(url,{method:'POST', headers:{'Content-Type':'application/json'},body:JSON.stringify({name:'User1'})}).then(res => {return res.json()})
-  .then(data => weather1)
+  .then(data => console.log(data))
   .catch(error => alert(error))
 }
-
 async function getWeather(url){
   alert(url);
   let response = fetch(url);
@@ -63,8 +67,8 @@ async function getWeather(url){
     console.log("buzz off");
     let data = await response.json();
   }
+  
   return data;
 }
 
 
-navigation.getCurrentPosition(successCallback, errorCallback);
