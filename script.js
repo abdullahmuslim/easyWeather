@@ -15,7 +15,7 @@ const interval1 = setInterval(createLocalUrl, 3000);
 
 const successCallback = (position) => {
   location = position;
-  alert(location);
+  alert(location['name']);
   stage1 = true;
 };
 const errorCallback = (error) => {
@@ -28,7 +28,7 @@ function createLocalUrl(){
   if (stage1){
     let lat = location['coords']['latitude'];
     let lon = location['coords']['longitude'];
-    alert(location);
+    alert(location['coords']['latitude']);
     url1 = `${baseUrl}&lat=${lat}&lon=${lon}&appid=${key}`;
     stage2 = true;
     const interval2 = setInterval(localWeather, 6000);
