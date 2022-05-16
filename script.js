@@ -15,7 +15,7 @@ const interval1 = setInterval(createLocalUrl, 3000);
 
 const successCallback = (position) => {
   location = position;
-  alert(position);
+  alert(location);
   stage1 = true;
 };
 const errorCallback = (error) => {
