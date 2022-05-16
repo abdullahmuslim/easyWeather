@@ -1,66 +1,70 @@
-var key = "8c07459f9be1805e0dcad855c72806f8"
-function stopValidation(){
-  return false;
-}
+var key = "8c07459f9be1805e0dcad855c72806f8";
+var baseUrl = "https://api.openweathermap.org/data/2.5/weather?";
 
-function validate(){
-  let input = document.getElementById("search")
-  if (input.value == ""){
-    alert("search is empty");
-    return false
-  }else if(input.value.length < 2){
-    alert("search too short");
-    return false;
-  }else{
-    prepare();
-    return true;
+
+var stage1;
+var stage2;
+var stage3;
+var url1;
+var weather1;
+
+const interval1 = setInterval(createLocalUrl, 1000);
+const interval2 = setInterval(localWeather, 1000);
+const interval3 = setInterval(showWeather, 1000);
+
+const successCallback = (position) => {
+  location = position;
+  stage1 = true;
+};
+const errorCallback = (error) => {
+  alert(error);
+  console.log(error);
+};
+
+
+
+function createLocalUrl(){
+  if (stage1){
+    let lat = location['coords']['latitude'];
+    let lon = location['coords']['longitude'];
+    url1 = `${baseUrl}&lat=${lat}&lon=${lon}&appid=${key}`;
+    stage2 = true;
+    clearInterval(interval1);
+  }
+}
+function localWeather(){
+  if (stage2){
+    weather1 = getWeather(url1);
+    stage3 = true;
+    clearInterval(interval2);
+  }
+}
+function showWeather(){
+  if (stage3){
+    name = document.getElementById("name");
+    name.innerHTML += ` weather1['name']`;
+    clearInterval(interval3);
   }
 }
 
-function prepare(){
-  let input = document.getElementById("search");
-  if(input.value.includes(",")){
-    alert("longitude shit");
-    const DMS = input.value.split(",");
-    const lat = DMS[0];
-    const lon = DMS[1];
-    search(lat, lon);
-  }else if(isNum(input.value)){
-    alert("postal");
-  }
+function getData(url){
+  fetch(url,{method:'POST', headers:{'Content-Type':'application/json'},body:JSON.stringify({name:'User1'})}).then(res => {return res.json()})
+  .then(data => weather1)
+  .catch(error => alert(error))
 }
 
-function isNum(text){
-  let check = text.match(/\d+/g);
-  if(check != null){
-    return true;
-  }else{
-    return false;
-  }
-}
-function search(lat, lon){
-  let form = document.getElementById("form");
-  var url = "https://api.openweathermap.org/data/2.5/weather?lat="+ lat +"&lon=" + lon + "&appid=" + key;
-  getData(url);
-}
-
-function geData(url){
-  let page = document.getElementById("p");
-  page.innerHTML = url;
-  alert("new " + url);
-  fetch("https://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid=8c07459f9be1805e0dcad855c72806f8")
-    .then(response => response.json())
-    .then(data => console.log(data))
-  .catch(err => console.log(err))
-  
-}
-async function getData(url){
-  let response = await fetch(url);
+async function getWeather(url){
   alert(url);
+  let response = fetch(url);
+  alert(response.status);
   console.log(response.status);
   let data = await response.json();
   if (response.state === 200){
+    console.log("buzz off");
     let data = await response.json();
   }
-  alert(data["name"]);
+  return data;
 }
+
+
+navigation.getCurrentPosition(successCallback, errorCallback);
