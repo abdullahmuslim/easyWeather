@@ -4,7 +4,6 @@
 <head>
   <meta name="viewport" content="width=device-width,initial-scale=1.0" http-equiv="CONTENT-TYPE" content="text/html,charset=UTF-8">
   <link rel="stylesheet" href="style.css"/>
-  <script type="text/javascript" src="script.js"></script>
   <title>weather</title>
 </head>
 <body>
@@ -32,34 +31,79 @@
   </div>
   <div class="current">
     <h2>Current Location</h2>
-    <h3></h3>
+    <h3 id="country1"></h3>
     <div>
-      <img src="weather.png" alt="cloud" height="25%" width="50%"/>
+      <img src="weather.png" alt="cloud" height="500px" width="250px"/>
       <div>
-        <div id="name">dhdhdh
+        <div id="name1">
         </div>
-        <div>ejeheh
+        <div id="weather1">
         </div>
-        <div>dhdhdh
+        <div id="temp1">
         </div>
-        <div>dhdhdjd
+        <div id="wind1">
         </div>
       </div>
     </div>
   </div>
+  <script>
+    var key = '8c07459f9be1805e0dcad855c72806f8';
+  var baseUrl = 'https://api.openweathermap.org/data/2.5/weather?';
+  function myWeather(position){
+    let lat = position.coords.latitude;
+    let lon = position.coords.longitude;
+    let url = `${baseUrl}lat=${lat}&lon=${lon}&appid=${key}`;
+    fetch(url).then(res => {
+      return res.json();
+    }).then(com => {
+      document.getElementById("country1").innerHTML = `Country: ${com['sys']['country']}`;
+      document.getElementById("name1").innerHTML = `City name:<br/>${com['name']}`;
+      document.getElementById("weather1").innerHTML = `Weather description:<br/>${com['weather']['description']}`;
+      document.getElementById("temp1").innerHTML = `Feels like:<br/>${(com['main']['feels_like']-273).toFixed(2)}°c`;
+      document.getElementById("wind1").innerHTML = `Wind speed:<br/>${com['wind']['speed']}m/s`;
+    });
+  }
+  /*
+  fetch(url).then(res =>{
+    console.log(res);
+    return res.json();
+  }).then(com => {
+    document.getElementById("para").innerHTML = com['name'];
+    console.log("done !");
+  })
+  */
+  
+  const successCallback = (position) => {
+    myWeather(position);
+  }
+  
+  const errorCallback = (error) => {
+    alert(error);
+  }
+  
+  if('geolocation' in navigator){
+    
+    alert("geolocation is available, ensure you turn on device location for the app to run");
+    navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+  }else{
+    alert("geolocation not available");
+  }
+
+
+  </script>
   <div class="later">
     <h2>Searched Location</h2>
-    <h3></h3>
+    <h3 id="country2"></h3>
     <div>
       <img src="weather.png" alt="cloud" height="25%" width="50%"/>
       <div>
-        <div>
+        <div class="name2">
         </div>
-        <div>
+        <div class="wheather2">
         </div>
-        <div>
+        <div class="temp2">
         </div>
-        <div>
+        <div class="wind2">
         </div>
       </div>
     </div>
