@@ -70,10 +70,12 @@ main div{
   display: flex;
 }
 .current div img, .later div img{
+  width:90%;
   margin-right: 3%;
   flex:1;
 }
 .current div div .later div div{
+  justify-content: center;
   margin-right: 1%;
   flex: 2;
 }
