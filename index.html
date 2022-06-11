@@ -1,0 +1,2019 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.">
+  <meta property="og:title" content="easyWeather: best weather webapp">
+  <meta property="og:description" content="easily find accurate weather conditions and forecast">
+  <meta property="og:image" content="logo.png">
+  <link rel="stylesheet" href="styles/style.css"/>
+  <title>easyWeather webApp</title>
+</head>
+<body>
+  <div id="options">
+    <div>&#128161; Help </div>
+    <div>Weather News</div>
+    <div>Weather Forecast</div>
+    <div>About</div>
+    <div>Contact Developer</div>
+  </div>
+  <header>
+    <div class="menu" onClick="toggleoption()">
+      <input type="checkbox" id="toggle" />
+      <label for="toggle" class="toggle">
+      </label>
+    </div>
+    <img src="logo.png" alt="logo" width="25px"/>
+    <div class="type">
+      <input type="checkbox" id="type">
+      <label class="typelabel" for="type" onClick="change()">
+      </label>
+    </div>
+  </header>
+  <div id="msgBox"></div>
+  <main>
+    <div class="currentWther" id="currentWther">
+      <div class="search">
+        <input type="search" id="cSearch" placeholder=" search city name" onsearch="search('cSearch')">
+        <img src="search.png" alt="search" width="5" onClick="search('cSearch')"/>
+      </div>
+      <div id="cs">
+      <h1>&#127757;&nbsp;Searched Location</h1>
+      <div class="country cCountry"></div>
+      <div>
+        <div class="citytime cCitytime">
+          <div class="city"></div>
+          <div class="time"></div>
+        </div>
+        <div class="data cData">
+          <div class="sun cSun">
+            <p class="rise"></p>
+            <p class="set"></p>
+          </div>
+          <p></p>
+          <p></p>
+          <p></p>
+          <p></p>
+          <p></p>
+          <div class="temp cTemp">
+            <p class="oTemp"></p>
+            <p class="fTemp"></p>
+          </div>
+          <p></p>
+          <p></p>
+          <p></p>
+        </div>
+      </div>
+      </div>
+      <div id="cc">
+      <h1>&#127757;&nbsp;Current Location</h1>
+      <div class="country cCountry">
+      </div>
+      <div>
+        <div class="citytime cCitytime">
+          <div class="city"></div>
+          <div class="time"></div>
+        </div>
+        <div class="data cData">
+          <div class="cSun">
+            <p class="rise"></p>
+            <p class="set"></p>
+          </div>
+          <p></p>
+          <p></p>
+          <p></p>
+          <p></p>
+          <p></p>
+          <div class="temp cTemp">
+            <p class="oTemp"></p>
+            <p class="fTemp"></p>
+          </div>
+          <p></p>
+          <p></p>
+          <p></p>
+        </div>
+      </div>
+      </div>
+    </div>
+    <div class="forecast" id="forecast">
+      <div class="fSearch">
+        <div class="Search">
+          <input type="search" id="Search" onsearch="search('Search')"/>
+          <img src="search.png" alt="search button" width="5" onClick="search('Search')"/>
+        </div>
+        <div class="typetoggle">
+          <input type="checkbox" id="toggletype" />
+          <label for="toggletype" class="toggletype">
+            <select id="toggleMode" onchange="toggleMode()">
+              <option value="min" >minutely</option>
+              <option value="hour">hourly</option>
+              <option value="daily">daily</option>
+            </select>
+          </label>
+        </div>
+      </div>
+      <!-- beginning of minute forecast -->
+      <div id="min">
+        <div id="fms">
+        <h1>&#127757;&nbsp;Searched Location</h1>
+        <div class="country fmCountry"></div>
+        <div class="citytime fmCitytime">
+          <div class="city"></div>
+          <div class="time"></div>
+        </div>
+        <div class="datum data fmData">
+          <div class="param fmParam">
+            <h2>TIME:</h2>
+            <h2>PPT:</h2>
+          </div>
+          <div class="mindata">
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+          </div>
+        </div>
+        </div>
+        <!-- begining of current forecast -->
+        <div id="fmc">
+        <h1>&#127757;&nbsp;Current Location</h1>
+        <div class="country fmCountry"></div>
+        <div class="citytime fmCitytime">
+          <div class="city"></div>
+          <div class="time"></div>
+        </div>
+        <div class="data datum fmData">
+          <div class="param fmParam">
+            <h2>TIME:</h2>
+            <h2>PPT:</h2>
+          </div>
+          <div class="mindata">
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+            <div>
+              <p></p>
+              <p></p>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+      <!-- beginning of searched hour forecast -->
+      <div id="hour">
+        <div id="fhs">
+        <h1>&#127757;&nbsp;Searched Location</h1>
+        <div class="country fhCountry"></div>
+<div class="flipdata fhFlipdata">
+          <div class="individual setwidth">
+            <div class="citytime fhCitytime">
+              <div class="city"></div>
+              <div class="time"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="temp">
+              <p class="oTemp"></p>
+              <p class="fTemp"></p>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="individual setwidth">
+            <div class="citytime">
+              <div class="city"></div>
+              <div class="time"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="temp">
+              <p class="oTemp"></p>
+              <p class="fTemp"></p>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="individual setwidth">
+            <div class="citytime">
+              <div class="city"></div>
+              <div class="time"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="temp">
+              <p class="oTemp"></p>
+              <p class="fTemp"></p>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="individual setwidth">
+            <div class="citytime">
+              <div class="city"></div>
+              <div class="time"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="temp">
+              <p class="oTemp"></p>
+              <p class="fTemp"></p>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="individual setwidth">
+            <div class="citytime">
+              <div class="city"></div>
+              <div class="time"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="temp">
+              <p class="oTemp"></p>
+              <p class="fTemp"></p>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="individual setwidth">
+            <div class="citytime">
+              <div class="city"></div>
+              <div class="time"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="temp">
+              <p class="oTemp"></p>
+              <p class="fTemp"></p>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="individual setwidth">
+            <div class="citytime">
+              <div class="city"></div>
+              <div class="time"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="temp">
+              <p class="oTemp"></p>
+              <p class="fTemp"></p>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="individual setwidth">
+            <div class="citytime">
+              <div class="city"></div>
+              <div class="time"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="temp">
+              <p class="oTemp"></p>
+              <p class="fTemp"></p>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+        <div class="individual setwidth">
+            <div class="citytime">
+              <div class="city"></div>
+              <div class="time"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="temp">
+              <p class="oTemp"></p>
+              <p class="fTemp"></p>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="individual setwidth">
+            <div class="citytime">
+              <div class="city"></div>
+              <div class="time"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="temp">
+              <p class="oTemp"></p>
+              <p class="fTemp"></p>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="individual setwidth">
+            <div class="citytime">
+              <div class="city"></div>
+              <div class="time"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="temp">
+              <p class="oTemp"></p>
+              <p class="fTemp"></p>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="individual setwidth">
+            <div class="citytime">
+              <div class="city"></div>
+              <div class="time"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="temp">
+              <p class="oTemp"></p>
+              <p class="fTemp"></p>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="individual setwidth">
+            <div class="citytime">
+              <div class="city"></div>
+              <div class="time"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="temp">
+              <p class="oTemp"></p>
+              <p class="fTemp"></p>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="individual setwidth">
+            <div class="citytime">
+              <div class="city"></div>
+              <div class="time"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="temp">
+              <p class="oTemp"></p>
+              <p class="fTemp"></p>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="individual setwidth">
+            <div class="citytime">
+              <div class="city"></div>
+              <div class="time"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="temp">
+              <p class="oTemp"></p>
+              <p class="fTemp"></p>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="individual setwidth">
+            <div class="citytime">
+              <div class="city"></div>
+              <div class="time"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="temp">
+              <p class="oTemp"></p>
+              <p class="fTemp"></p>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="individual setwidth">
+            <div class="citytime">
+              <div class="city"></div>
+              <div class="time"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="temp">
+              <p class="oTemp"></p>
+              <p class="fTemp"></p>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="individual setwidth">
+            <div class="citytime">
+              <div class="city"></div>
+              <div class="time"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="temp">
+              <p class="oTemp"></p>
+              <p class="fTemp"></p>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="individual setwidth">
+            <div class="citytime">
+              <div class="city"></div>
+              <div class="time"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="temp">
+              <p class="oTemp"></p>
+              <p class="fTemp"></p>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="individual setwidth">
+            <div class="citytime">
+              <div class="city"></div>
+              <div class="time"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="temp">
+              <p class="oTemp"></p>
+              <p class="fTemp"></p>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="individual setwidth">
+            <div class="citytime">
+              <div class="city"></div>
+              <div class="time"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="temp">
+              <p class="oTemp"></p>
+              <p class="fTemp"></p>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="individual setwidth">
+            <div class="citytime">
+              <div class="city"></div>
+              <div class="time"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="temp">
+              <p class="oTemp"></p>
+              <p class="fTemp"></p>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="individual setwidth">
+            <div class="citytime">
+              <div class="city"></div>
+              <div class="time"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="temp">
+              <p class="oTemp"></p>
+              <p class="fTemp"></p>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="individual setwidth">
+            <div class="citytime">
+              <div class="city"></div>
+              <div class="time"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="temp">
+              <p class="oTemp"></p>
+              <p class="fTemp"></p>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+        </div>
+        </div>
+        <!-- beginning of current hour forecast -->
+        <div id="fhc">
+        <h1>&#127757;&nbsp;Current Location</h1>
+        <div class="country fhCountry"></div>
+        <div class="flipdata fhFlipdata">
+          <div class="individual setwidth">
+            <div class="citytime">
+              <div class="city"></div>
+              <div class="time"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="temp">
+              <p class="oTemp"></p>
+              <p class="fTemp"></p>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="individual setwidth">
+            <div class="citytime">
+              <div class="city"></div>
+              <div class="time"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="temp">
+              <p class="oTemp"></p>
+              <p class="fTemp"></p>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="individual setwidth">
+            <div class="citytime">
+              <div class="city"></div>
+              <div class="time"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="temp">
+              <p class="oTemp"></p>
+              <p class="fTemp"></p>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="individual setwidth">
+            <div class="citytime">
+              <div class="city"></div>
+              <div class="time"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="temp">
+              <p class="oTemp"></p>
+              <p class="fTemp"></p>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="individual setwidth">
+            <div class="citytime">
+              <div class="city"></div>
+              <div class="time"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="temp">
+              <p class="oTemp"></p>
+              <p class="fTemp"></p>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="individual setwidth">
+            <div class="citytime">
+              <div class="city"></div>
+              <div class="time"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="temp">
+              <p class="oTemp"></p>
+              <p class="fTemp"></p>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="individual setwidth">
+            <div class="citytime">
+              <div class="city"></div>
+              <div class="time"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="temp">
+              <p class="oTemp"></p>
+              <p class="fTemp"></p>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="individual setwidth">
+            <div class="citytime">
+              <div class="city"></div>
+              <div class="time"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="temp">
+              <p class="oTemp"></p>
+              <p class="fTemp"></p>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+        <div class="individual setwidth">
+            <div class="citytime">
+              <div class="city"></div>
+              <div class="time"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="temp">
+              <p class="oTemp"></p>
+              <p class="fTemp"></p>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="individual setwidth">
+            <div class="citytime">
+              <div class="city"></div>
+              <div class="time"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="temp">
+              <p class="oTemp"></p>
+              <p class="fTemp"></p>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="individual setwidth">
+            <div class="citytime">
+              <div class="city"></div>
+              <div class="time"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="temp">
+              <p class="oTemp"></p>
+              <p class="fTemp"></p>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="individual setwidth">
+            <div class="citytime">
+              <div class="city"></div>
+              <div class="time"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="temp">
+              <p class="oTemp"></p>
+              <p class="fTemp"></p>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="individual setwidth">
+            <div class="citytime">
+              <div class="city"></div>
+              <div class="time"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="temp">
+              <p class="oTemp"></p>
+              <p class="fTemp"></p>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="individual setwidth">
+            <div class="citytime">
+              <div class="city"></div>
+              <div class="time"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="temp">
+              <p class="oTemp"></p>
+              <p class="fTemp"></p>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="individual setwidth">
+            <div class="citytime">
+              <div class="city"></div>
+              <div class="time"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="temp">
+              <p class="oTemp"></p>
+              <p class="fTemp"></p>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="individual setwidth">
+            <div class="citytime">
+              <div class="city"></div>
+              <div class="time"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="temp">
+              <p class="oTemp"></p>
+              <p class="fTemp"></p>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="individual setwidth">
+            <div class="citytime">
+              <div class="city"></div>
+              <div class="time"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="temp">
+              <p class="oTemp"></p>
+              <p class="fTemp"></p>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="individual setwidth">
+            <div class="citytime">
+              <div class="city"></div>
+              <div class="time"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="temp">
+              <p class="oTemp"></p>
+              <p class="fTemp"></p>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="individual setwidth">
+            <div class="citytime">
+              <div class="city"></div>
+              <div class="time"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="temp">
+              <p class="oTemp"></p>
+              <p class="fTemp"></p>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="individual setwidth">
+            <div class="citytime">
+              <div class="city"></div>
+              <div class="time"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="temp">
+              <p class="oTemp"></p>
+              <p class="fTemp"></p>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="individual setwidth">
+            <div class="citytime">
+              <div class="city"></div>
+              <div class="time"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="temp">
+              <p class="oTemp"></p>
+              <p class="fTemp"></p>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="individual setwidth">
+            <div class="citytime">
+              <div class="city"></div>
+              <div class="time"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="temp">
+              <p class="oTemp"></p>
+              <p class="fTemp"></p>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="individual setwidth">
+            <div class="citytime">
+              <div class="city"></div>
+              <div class="time"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="temp">
+              <p class="oTemp"></p>
+              <p class="fTemp"></p>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="individual setwidth">
+            <div class="citytime">
+              <div class="city"></div>
+              <div class="time"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="temp">
+              <p class="oTemp"></p>
+              <p class="fTemp"></p>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+        </div>
+        </div>
+      </div><!-- beginning of daily forecast
+      -->
+      <div id="daily">
+        <div id="fds">
+        <h1>&#127757;&nbsp;Searched Location</h1>
+        <div class="country fdCountry"></div>
+        <div class="flipdata fdData">
+          <div class="data individual">
+            <div class="citytime">
+              <div class="city">
+              
+              </div>
+              <div class="time">
+                
+              </div>
+            </div>
+            <div class="sun">
+              <div class="rise"></div>
+              <div class="set"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="dailytemp">
+              <div class="dstion"></div>
+              <div class="dtemps">
+                <div class="Ttemp">
+                  <div class="Tday"></div>
+                  <div class="Tnight"></div>
+                </div>
+                <div class="Tmin">
+                  <div class="TminDay"></div>
+                  <div class="TminNight"></div>
+                </div>
+                <div class="Tmax">
+                  <div class="TmaxDay"></div>
+                  <div class="TmaxNight"></div>
+                </div>
+              </div>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="data individual">
+            <div class="citytime">
+              <div class="city">
+              
+              </div>
+              <div class="time">
+                
+              </div>
+            </div>
+            <div class="sun">
+              <div class="rise"></div>
+              <div class="set"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="dailytemp">
+              <div class="dstion"></div>
+              <div class="dtemps">
+                <div class="Ttemp">
+                  <div class="Tday"></div>
+                  <div class="Tnight"></div>
+                </div>
+                <div class="Tmin">
+                  <div class="TminDay"></div>
+                  <div class="TminNight"></div>
+                </div>
+                <div class="Tmax">
+                  <div class="TmaxDay"></div>
+                  <div class="TmaxNight"></div>
+                </div>
+              </div>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="data individual">
+            <div class="citytime">
+              <div class="city">
+              
+              </div>
+              <div class="time">
+                
+              </div>
+            </div>
+            <div class="sun">
+              <div class="rise"></div>
+              <div class="set"></div>
+             </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="dailytemp">
+              <div class="dstion"></div>
+              <div class="dtemps">
+                <div class="Ttemp">
+                  <div class="Tday"></div>
+                  <div class="Tnight"></div>
+                </div>
+                <div class="Tmin">
+                  <div class="TminDay"></div>
+                  <div class="TminNight"></div>
+                </div>
+                <div class="Tmax">
+                  <div class="TmaxDay"></div>
+                  <div class="TmaxNight"></div>
+                </div>
+              </div>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="data individual">
+            <div class="citytime">
+              <div class="city">
+              
+              </div>
+              <div class="time">
+                
+              </div>
+            </div>
+            <div class="sun">
+              <div class="rise"></div>
+              <div class="set"></div>
+              </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="dailytemp">
+              <div class="dstion"></div>
+              <div class="dtemps">
+                <div class="Ttemp">
+                  <div class="Tday"></div>
+                  <div class="Tnight"></div>
+                </div>
+                <div class="Tmin">
+                  <div class="TminDay"></div>
+                  <div class="TminNight"></div>
+                </div>
+                <div class="Tmax">
+                  <div class="TmaxDay"></div>
+                  <div class="TmaxNight"></div>
+                </div>
+              </div>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="data individual">
+            <div class="citytime">
+              <div class="city">
+                
+              </div>
+              <div class="time">
+                 
+              </div>
+            </div>
+            <div class="sun">
+              <div class="rise"></div>
+              <div class="set"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="dailytemp">
+              <div class="dstion"></div>
+              <div class="dtemps">
+                <div class="Ttemp">
+                  <div class="Tday"></div>
+                  <div class="Tnight"></div>
+                </div>
+                <div class="Tmin">
+                  <div class="TminDay"></div>
+                  <div class="TminNight"></div>
+                </div>
+                <div class="Tmax">
+                  <div class="TmaxDay"></div>
+                  <div class="TmaxNight"></div></div>
+            </div>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="data individual">
+            <div class="citytime">
+              <div class="city">
+              
+              </div>
+              <div class="time">
+                
+              </div>
+            </div>
+            <div class="sun">
+              <div class="rise"></div>
+              <div class="set"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="dailytemp">
+              <div class="dstion"></div>
+              <div class="dtemps">
+                <div class="Ttemp">
+                  <div class="Tday"></div>
+                  <div class="Tnight"></div>
+                </div>
+                <div class="Tmin">
+                  <div class="TminDay"></div>
+                  <div class="TminNight"></div>
+                </div>
+                <div class="Tmax">
+                  <div class="TmaxDay"></div>
+                  <div class="TmaxNight"></div>
+                </div>
+              </div>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="data individual">
+            <div class="citytime">
+              <div class="city">
+              
+              </div>
+              <div class="time">
+                
+              </div>
+            </div>
+            <div class="sun">
+              <div class="rise"></div>
+              <div class="set"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="dailytemp">
+              <div class="dstion"></div>
+              <div class="dtemps">
+                <div class="Ttemp">
+                  <div class="Tday"></div>
+                  <div class="Tnight"></div>
+                </div>
+                <div class="Tmin">
+                  <div class="TminDay"></div>
+                  <div class="TminNight"></div>
+                </div>
+                <div class="Tmax">
+                  <div class="TmaxDay"></div>
+                  <div class="TmaxNight"></div>
+                </div>
+              </div>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+        </div>
+        </div>
+        <div id="fdc">
+        <h1>&#127757;&nbsp;Current Location</h1>
+        <div class="country fdCountry"></div>
+        <div class="flipdata fdData">
+          <div class="data individual">
+            <div class="citytime">
+              <div class="city">
+              
+              </div>
+              <div class="time">
+                
+              </div>
+            </div>
+            <div class="sun">
+              <div class="rise"></div>
+              <div class="set"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="dailytemp">
+              <div class="dstion"></div>
+              <div class="dtemps">
+                <div class="Ttemp">
+                  <div class="Tday"></div>
+                  <div class="Tnight"></div>
+                </div>
+                <div class="Tmin">
+                  <div class="TminDay"></div>
+                  <div class="TminNight"></div>
+                </div>
+                <div class="Tmax">
+                  <div class="TmaxDay"></div>
+                  <div class="TmaxNight"></div>
+                </div>
+              </div>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="data individual">
+            <div class="citytime">
+              <div class="city">
+              
+              </div>
+              <div class="time">
+                
+              </div>
+            </div>
+            <div class="sun">
+              <div class="rise"></div>
+              <div class="set"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="dailytemp">
+              <div class="dstion"></div>
+              <div class="dtemps">
+                <div class="Ttemp">
+                  <div class="Tday"></div>
+                  <div class="Tnight"></div>
+                </div>
+                <div class="Tmin">
+                  <div class="TminDay"></div>
+                  <div class="TminNight"></div>
+                </div>
+                <div class="Tmax">
+                  <div class="TmaxDay"></div>
+                  <div class="TmaxNight"></div>
+                </div>
+              </div>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="data individual">
+            <div class="citytime">
+              <div class="city">
+              
+              </div>
+              <div class="time">
+                
+              </div>
+            </div>
+            <div class="sun">
+              <div class="rise"></div>
+              <div class="set"></div>
+             </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="dailytemp">
+              <div class="dstion"></div>
+              <div class="dtemps">
+                <div class="Ttemp">
+                  <div class="Tday"></div>
+                  <div class="Tnight"></div>
+                </div>
+                <div class="Tmin">
+                  <div class="TminDay"></div>
+                  <div class="TminNight"></div>
+                </div>
+                <div class="Tmax">
+                  <div class="TmaxDay"></div>
+                  <div class="TmaxNight"></div>
+                </div>
+              </div>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="data individual">
+            <div class="citytime">
+              <div class="city">
+              
+              </div>
+              <div class="time">
+                
+              </div>
+            </div>
+            <div class="sun">
+              <div class="rise"></div>
+              <div class="set"></div>
+              </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="dailytemp">
+              <div class="dstion"></div>
+              <div class="dtemps">
+                <div class="Ttemp">
+                  <div class="Tday"></div>
+                  <div class="Tnight"></div>
+                </div>
+                <div class="Tmin">
+                  <div class="TminDay"></div>
+                  <div class="TminNight"></div>
+                </div>
+                <div class="Tmax">
+                  <div class="TmaxDay"></div>
+                  <div class="TmaxNight"></div>
+                </div>
+              </div>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="data individual">
+            <div class="citytime">
+              <div class="city">
+                
+              </div>
+              <div class="time">
+                 
+              </div>
+            </div>
+            <div class="sun">
+              <div class="rise"></div>
+              <div class="set"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="dailytemp">
+              <div class="dstion"></div>
+              <div class="dtemps">
+                <div class="Ttemp">
+                  <div class="Tday"></div>
+                  <div class="Tnight"></div>
+                </div>
+                <div class="Tmin">
+                  <div class="TminDay"></div>
+                  <div class="TminNight"></div>
+                </div>
+                <div class="Tmax">
+                  <div class="TmaxDay"></div>
+                  <div class="TmaxNight"></div>
+                </div>
+              </div>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="data individual">
+            <div class="citytime">
+              <div class="city">
+              
+              </div>
+              <div class="time">
+                
+              </div>
+            </div>
+            <div class="sun">
+              <div class="rise"></div>
+              <div class="set"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="dailytemp">
+              <div class="dstion"></div>
+              <div class="dtemps">
+                <div class="Ttemp">
+                  <div class="Tday"></div>
+                  <div class="Tnight"></div>
+                </div>
+                <div class="Tmin">
+                  <div class="TminDay"></div>
+                  <div class="TminNight"></div>
+                </div>
+                <div class="Tmax">
+                  <div class="TmaxDay"></div>
+                  <div class="TmaxNight"></div>
+                </div>
+              </div>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+          <div class="data individual">
+            <div class="citytime">
+              <div class="city">
+              
+              </div>
+              <div class="time">
+                
+              </div>
+            </div>
+            <div class="sun">
+              <div class="rise"></div>
+              <div class="set"></div>
+            </div>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <div class="dailytemp">
+              <div class="dstion"></div>
+              <div class="dtemps">
+                <div class="Ttemp">
+                  <div class="Tday"></div>
+                  <div class="Tnight"></div>
+                </div>
+                <div class="Tmin">
+                  <div class="TminDay"></div>
+                  <div class="TminNight"></div>
+                </div>
+                <div class="Tmax">
+                  <div class="TmaxDay"></div>
+                  <div class="TmaxNight"></div>
+                </div>
+              </div>
+            </div>
+            <p></p>
+            <p></p>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script type="text/javascript" src="scripts/script.js"></script>
+  <footer>
+    <div class="words">all right reserved ©</div>
+    <a href="#">f</a>
+    <a href="https://wa.me/message/A53BTUPBBHYBM1">Wa</a>
+  </footer>
+</body>
+</html>
