@@ -71,11 +71,9 @@ function getCordWther(cords, index, target, option){
   let lat = cords[0];
   let lon = cords[1];
   let url = `${revCoding}lat=${lat}&lon=${lon}&appid=${key}`;
-  alert(url);
   fetch(url).then(res => {
     return res.json();
   }).then(cords => {
-    alert(cords);
     cords["country"] = [cords.sys.country];
     fill(cords, index, target, option);
   }).catch(err => {alert(err)});
@@ -87,9 +85,11 @@ function getZipData(zipCode, index, target, option){
   let zip = zipCode[0];
   let country = zipCode[1].toUpperCase();
   let url = `${cordBaseUrl}/zip?zip=${zip},${country}&appid=${key}`;
+  alert(url);
   fetch(url).then(res => {
     return res.json();
   }).then(cords => {
+    alert(cords);
     cords = [cords];
     fill(cords, index, target, option);
   }).catch(err => {alert(err);});
