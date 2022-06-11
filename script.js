@@ -85,11 +85,10 @@ function getZipData(zipCode, index, target, option){
   let zip = zipCode[0];
   let country = zipCode[1].toUpperCase();
   let url = `${cordBaseUrl}/zip?zip=${zip},${country}&appid=${key}`;
-  alert(url);
+  message.innerHTML = url;
   fetch(url).then(res => {
     return res.json();
   }).then(cords => {
-    alert(cords);
     cords = [cords];
     fill(cords, index, target, option);
   }).catch(err => {alert(err);});
