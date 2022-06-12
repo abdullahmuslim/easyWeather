@@ -1,6 +1,6 @@
 var key = "8c07459f9be1805e0dcad855c72806f8";
 var callBaseUrl = "https://api.openweathermap.org/data/2.5/onecall?";
-var cordBaseUrl = "http://api.openweathermap.org/geo/1.0";
+var cordBaseUrl = "https://api.openweathermap.org/geo/1.0";
 var revCoding = "https://api.openweathermap.org/data/2.5/weather?";
 var message = document.getElementById("msgBox");
 var majorData;
@@ -85,7 +85,6 @@ function getZipData(zipCode, index, target, option){
   let zip = zipCode[0];
   let country = zipCode[1].toUpperCase();
   let url = `${cordBaseUrl}/zip?zip=${zip},${country}&appid=${key}`;
-  message.innerHTML = url;
   fetch(url).then(res => {
     return res.json();
   }).then(cords => {
@@ -356,7 +355,6 @@ function forecastDailyFill(data, index, target){
 const successCallback = (position) => {
   let pos = position.coords;
   let value = `${pos.latitude} ${pos.longitude}`;
-  message.innerHTML = JSON.stringify(value);
   getCordWther(value, 1, 'c', 'all');
 }
 const errorCallback = (error) => {
