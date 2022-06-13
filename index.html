@@ -6,18 +6,80 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.">
   <meta property="og:title" content="easyWeather: best weather webapp">
   <meta property="og:description" content="easily find accurate weather conditions and forecast">
-  <meta property="og:image" content="logo.png">
+  <meta property="og:image" content="sociallogo.png">
   <link rel="stylesheet" href="style.css"/>
   <title>easyWeather webApp</title>
 </head>
 <body>
   <div id="options">
-    <div>&#128161; Help </div>
-    <div>Weather News</div>
-    <div>Weather Forecast</div>
-    <div>About</div>
-    <div>Contact Developer</div>
+    <div onClick="help()">&#128161; Help </div>
+    <div><a href="https://www.sciencedaily.com/news/earth_climate" target="_blank" rel="nofollow">Weather News</a></div>
+    <div onClick="wtherForecast()">Weather Forecast</div>
+    <div onClick="about()">About</div>
+    <div onClick="contact()">Contact Developer</div>
   </div>
+  <div id="optionText">
+    <div id="help">
+      <div class="head">
+        <div onClick="cancHelp()">x</div>
+        <p> &#128161; Help</p>
+      </div>
+      <div>
+        <fieldset>
+          <legend>search help</legend>
+          <div>
+            If you are unable to get your search result with city name, try using coordinates and/or zip/postal code.<br/><br/>
+            Weather can be searched using name, coordinates or zip/post code.
+            <span><br/><br/>Note:<br/><br/>
+              Coordinates has two value integers representing latitude and longitude of a point on Earth. ie &quot;35 139&quot;. They also can have float point.<br/><br/>
+              Zip/Post code is an address use in mailing by different regions of the world. Zip is a two-value input representing zip/post code and the country code.ie &quot;E14 GB&quot;. refer to ISO for your country code.<br/><br/>
+              City name can have one, two and three values (three values available in US only) separated with comma Incase place name contains more than a word. ie &quot;London&quot;, &quot;London US&quot;, &quot;London UK&quot;.
+            </span>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+    <div id="about">
+      <div class="head">
+        <div onClick="cancAbout()">x</div>
+        <p>About</p>
+      </div>
+      <div>
+        <fieldset>
+          <legend>About App</legend>
+          <div>
+            This app was designed to make checking current weather and forecast an easy pie. This is a personal project I started after learning basics of frontend
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>About Developer</legend>
+          <div>
+            Hi, my name is <b>MUSLIM ABDULLAH.</b>I&apos;m a teen enthusiastic programmer from the African side of the world.<br/>
+            I learnt python years ago and is ready to dive more into programing. <em>This is my first step</em>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+    <div id="contact">
+      <div class="head">
+        <div onClick="cancContact()">x</div>
+        <p>Contact&nbsp;Developer</p>
+      </div>
+      <div>
+        <fieldset>
+          <legend>Contacts</legend>
+          <div>
+            <a href="tel:+2347042448312">(+234)7042 448 312</a><br/> <a href="tel:+2347086526091">(+234)7086 526 091</a>
+            <br/><br/>
+            WhatsApp: <a href="https://wa.me/message/A53BTUPBBHYBM1">chat link</a>
+            <br/>
+            Facebook: <a href="https://www.facebook.com/profile.php?id=100061691281857">chat link</a>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+  <div id="messg"> </div>
   <header>
     <div class="menu" onClick="toggleoption()">
       <input type="checkbox" id="toggle" />
@@ -2012,7 +2074,7 @@
   <script type="text/javascript" src="script.js"></script>
   <footer>
     <div class="words">all right reserved ©</div>
-    <a href="#">f</a>
+    <a href="https://www.facebook.com/profile.php?id=100061691281857">f</a>
     <a href="https://wa.me/message/A53BTUPBBHYBM1">Wa</a>
   </footer>
 </body>

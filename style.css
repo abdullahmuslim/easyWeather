@@ -13,9 +13,10 @@ input[type="checkbox"]{
 header{
   display: flex;
   flex-flow: row nowrap;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  width: 100vw;
+  text-align: center;
+  width: 100%;
   background: #0a5000;
 }
 header .menu, img{
@@ -58,18 +59,67 @@ header img{
 }
 .type{
   height: 5%;
-  font-size: 1.1em;
+  font-size: 1em;
   padding-top: 1%;
-  margin-left: 2%;
 }
 .typelabel:before{
-  content: "Current weather";
+  content: "Current weather🔁";
 }
 
 #msgBox{
   text-align: center;
   background: #af3e3d;
   font-size: 1.3em;
+}
+#optionText{
+  background: #000;
+  position: absolute;
+  left: 0;
+  top: auto;
+  text-align: center;
+  z-index: 3;
+}
+#help{
+  display: none;
+  width: 80vw;
+  height: 100vh;
+}
+#about{
+  display: none;
+  width: 80vw;
+  height: 100vh;
+}
+#contact{
+  display: none;
+  width: 80vw;
+  height: 100vh;
+}
+.head{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+}
+.head div{
+  background: #000;
+  flex: 1;
+  font-size: 3em;
+  border: 1px solid #447;
+}
+.head p{
+  flex: 2;
+}
+#messg{
+  visibility: hidden;
+  color: #000;
+  width: auto;
+  position: fixed;
+  padding: 1em;
+  bottom: 20vh;
+  border-radius: 1.5em;
+  animation: message 5s ease-in;
+  animation-fill-mode: forwards;
 }
 .currentWther{
   display: flex;
@@ -150,17 +200,20 @@ header img{
 #options{
   position: fixed;
   z-index: 2;
-  top: 15%;
+  top: 5em;
   left: -150vw;
   transition: left 2s ease-in-out;
-  background: rgb(0, 0, 0, 0.5);
+  background: rgb(0, 0, 0, 0.9);
   height: 100vh;
   width: 75vw;
   text-align: center;
-  padding: 1.5em auto;
   font-family: "Libre Baskerville" serif;
 }
-
+#options div{
+  border: 1px solid #447;
+  margin: 1px 0;
+  padding: 1.5em 2em;
+}
 footer{
   position: fixed;
   width: 100%;
@@ -319,15 +372,9 @@ footer a{
   transform: rotate(-405deg) translateX(-15%);
   transition: transform 0.4s ease-in-out;
 }
-/*
-#toggle:checked ~ #options:after{
-  position: fixed;
-  left: 1vw;
-  transition: left 0.2s ease-in-out;
-}
-*/
+
 #type:checked ~ .typelabel:before{
-  content: "Weather forecast";
+  content: "Weather forecast🔁";
 }
 .search img:active{
   background: #000;
@@ -341,4 +388,42 @@ select{
 }
 .typetoggle{
   height: 2.5em;
+}
+span{
+  color: #f77;
+}
+a{
+  color: #cff;
+}
+#options div a{
+  color: #fff;
+  text-decoration: none;
+  padding: inherit;
+}
+@keyframes message{
+  0%{
+    background: rgba(255,255,255,0.8);
+    visibility: visible;
+  }
+  100%{
+    background: transparent;
+    visibility: hidden;
+  }
+}
+
+@media screen and (min-width: 600px){
+  #toggle:checked ~ .toggle:before {
+    transform: rotate(405deg) translateY(320%) translateX(15%);
+    transition: transform 0.4s ease-in-out;
+  }
+  #toggle:checked ~ .toggle:after{
+    transform: rotate(-405deg) translateX(-10%);
+    transition: transform 0.4s ease-in-out;
+  }
+  #options{
+    top: 10em;
+  }
+  .type{
+    font-size: 2em;
+  }
 }
