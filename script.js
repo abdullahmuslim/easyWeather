@@ -2,8 +2,9 @@ var key = "8c07459f9be1805e0dcad855c72806f8";
 var callBaseUrl = "https://api.openweathermap.org/data/2.5/onecall?";
 var cordBaseUrl = "https://api.openweathermap.org/geo/1.0";
 var revCoding = "https://api.openweathermap.org/data/2.5/weather?";
+var unit = "metric";
 var msg = document.getElementById("msgBox");
-var majorData;
+var units = ["°c", "m/s"];
 
 function search(searchId){
   let value = document.getElementById(searchId).value;
@@ -136,7 +137,7 @@ function currentFill(data, index, target){
   let rise = new Date(data[1][0]["current"]["sunrise"]);
   let sset = new Date(data[1][0]["current"]["sunset"]);
   let container = [country,citytime[0],citytime[1],sun[0],sun[1],cdata[1],cdata[2],cdata[3],cdata[4],cdata[5],temp[0],temp[1],cdata[7],cdata[8], cdata[9]];
-  let filldata = [`Country:&nbsp;${data[0][0]["country"]}`,`${data[0][0]["name"]}`,`${time.getHours()}&nbsp;:&nbsp;${time.getMinutes()}`,`&#127749;&nbsp;Sunrise: ${rise.getHours()}&nbsp;:&nbsp;${rise.getMinutes()}`,`&#127751;&nbsp;Sunset: ${sset.getHours()}&nbsp;:&nbsp;${sset.getMinutes()}`, `&#9729;&nbsp;Weather: ${data[1][0]["current"]["weather"][0]["main"]}`, `&#9729;&nbsp;Description: ${data[1][0]["current"]["weather"][0]["description"]}`,`&#127787;&nbsp;Visibility: ${data[1][0]["current"]["visibility"]}`, `&#127745;&nbsp;Humidity: ${data[1][0]["current"] ["humidity"]}`, `&#128167;&nbsp;Dew&nbsp;point: ${data[1][0]["current"] ["dew_point"]}`, `&#127777;&nbsp;Temperature:&nbsp;${data[1][0]["current"]["temp"]}`, ` feels&nbsp;like&nbsp;${data[1][0]["current"]["feels_like"]}`, `&#127744;&nbsp;Wind&nbsp;speed ${data[1][0]["current"]["wind_speed"]}`, `&#10036;&nbsp;Wind&nbsp;Direction ${data[1][0]["current"]["wind_deg"]}`,`&#127786;&nbsp;Wind Gust: ${data[1][0]["current"]["wind_gust"]}`];
+  let filldata = [`Country:&nbsp;${data[0][0]["country"]}`,`${data[0][0]["name"]}`,`${time.getHours()}&nbsp;:&nbsp;${time.getMinutes()}`,`&#127749;&nbsp;Sunrise: ${rise.getHours()}&nbsp;:&nbsp;${rise.getMinutes()}`,`&#127751;&nbsp;Sunset: ${sset.getHours()}&nbsp;:&nbsp;${sset.getMinutes()}`, `&#9729;&nbsp;Weather: ${data[1][0]["current"]["weather"][0]["main"]}`, `&#9729;&nbsp;Description: ${data[1][0]["current"]["weather"][0]["description"]}`,`&#127787;&nbsp;Visibility: ${data[1][0]["current"]["visibility"]} meters`, `&#127745;&nbsp;Humidity: ${data[1][0]["current"] ["humidity"]}%`, `&#128167;&nbsp;Dew&nbsp;point: ${data[1][0]["current"] ["dew_point"]}${units[0]}`, `&#127777;&nbsp;Temperature:&nbsp;${data[1][0]["current"]["temp"]}${units[0]}`, ` feels&nbsp;like&nbsp;${data[1][0]["current"]["feels_like"]}${units[0]}`, `&#127744;&nbsp;Wind&nbsp;speed ${data[1][0]["current"]["wind_speed"]}${units[1]}`, `&#10036;&nbsp;Wind&nbsp;Direction ${data[1][0]["current"]["wind_deg"]}°`,`&#127786;&nbsp;Wind Gust: ${data[1][0]["current"]["wind_gust"]}${units[1]}`];
   for (let i = 0;i < filldata.length;i++){
     container[i].innerHTML = filldata[i];
   }
@@ -153,7 +154,7 @@ function getWther(cords, index, target, option){
     lon = cords["coord"]["lon"];
     lat = cords["coord"]["lat"];
   }
-  let url = `${callBaseUrl}lat=${lat}&lon=${lon}&appid=${key}`;
+  let url = `${callBaseUrl}lat=${lat}&lon=${lon}&units=${unit}&appid=${key}`;
   fetch(url).then(res => {
     if(res.status == 200){
       message("success");
@@ -269,13 +270,13 @@ function forecastHourFill(data, index,target){
     fillData[place+1] = `${time.getHours()}&nbsp;:&nbsp;${time.getMinutes()}`;
     fillData[place+2] = `&#9729;&nbsp;Weather: ${hourdata[i]["weather"][0]["main"]}`;
     fillData[place+3] = `&#9729;Description: ${hourdata[i]["weather"][0]["description"]}`;
-    fillData[place +4] = `&#127787;&nbsp;Visibility: ${hourdata[i]["visibility"]}`;
-    fillData[place+5] = `&#127745;&nbsp;Humidity: ${hourdata[i]["humidity"]}`;
-    fillData[place+6] = `&#128167;&nbsp;Dew&nbsp;point: ${hourdata[i]["dew_point"]}`;
-    fillData[place+7] = `&#127777;&nbsp;Temperature:&nbsp;${hourdata[i]["temp"]}`;
-    fillData[place+8] = `Feels&nbsp;like:&nbsp;${hourdata[i]["feels_like"]}`;
-    fillData[place+9] = `&#127744;&nbsp;Wind&nbsp;speed: ${hourdata[i]["wind_speed"]}`;
-    fillData[place+10] = `&#10036;&nbsp;Wind&nbsp;direction: ${hourdata[i]["wind_deg"]}`;
+    fillData[place +4] = `&#127787;&nbsp;Visibility: ${hourdata[i]["visibility"]} meters`;
+    fillData[place+5] = `&#127745;&nbsp;Humidity: ${hourdata[i]["humidity"]}%`;
+    fillData[place+6] = `&#128167;&nbsp;Dew&nbsp;point: ${hourdata[i]["dew_point"]}${units[0]}`;
+    fillData[place+7] = `&#127777;&nbsp;Temperature:&nbsp;${hourdata[i]["temp"]}${units[0]}`;
+    fillData[place+8] = `Feels&nbsp;like:&nbsp;${hourdata[i]["feels_like"]}${units[0]}`;
+    fillData[place+9] = `&#127744;&nbsp;Wind&nbsp;speed: ${hourdata[i]["wind_speed"]}${units[1]}`;
+    fillData[place+10] = `&#10036;&nbsp;Wind&nbsp;direction: ${hourdata[i]["wind_deg"]}°`;
     place += 11;
   }
   for (let i = 0; i < container.length; i++){
@@ -330,17 +331,17 @@ function forecastDailyFill(data, index, target){
     fillData[place+4] = `&#9729;&nbsp;Weather: ${base[i]["weather"][0]["main"]}`;
     fillData[place+5] = `&#9729;&nbsp;Description: ${base[i]["weather"][0]["description"]}`;
     fillData[place+6] = ``;
-    fillData[place+7] = `&#127745;&nbsp;Humidity: ${base[i]["humidity"]}`;
-    fillData[place+8] = `&#128167;&nbsp;Dew&nbsp;point: ${base[i]["dew_point"]}`;
+    fillData[place+7] = `&#127745;&nbsp;Humidity: ${base[i]["humidity"]}%`;
+    fillData[place+8] = `&#128167;&nbsp;Dew&nbsp;point: ${base[i]["dew_point"]}${units[0]}`;
     fillData[place+9] = `&#127777;&nbsp;Temperature`;
-    fillData[place+10] = `Day:&nbsp;${base[i]["temp"]["day"]}`;
-    fillData[place+11] = `Night:&nbsp;${base[i]["temp"]["night"]}`
-    fillData[place+12] = `Morn:&nbsp;${base[i]["temp"]["morn"]}`;
-    fillData[place+13] = `Eve:&nbsp;${base[i]["temp"]["eve"]}`;
-    fillData[place+14] = `Min:&nbsp;${base[i]["temp"]["min"]}`;
-    fillData[place+15] = `Max:&nbsp;${base[i]["temp"]["max"]}`;
-    fillData[place+16] = `&#127744;&nbsp;Wind&nbsp;speed: ${base[i]["wind_speed"]}`;
-    fillData[place+17] = `&#10036;&nbsp;Wind&nbsp;direction ${base[i]["wind_deg"]}`;
+    fillData[place+10] = `Day:&nbsp;${base[i]["temp"]["day"]}${units[0]}`;
+    fillData[place+11] = `Night:&nbsp;${base[i]["temp"]["night"]}${units[0]}`
+    fillData[place+12] = `Morn:&nbsp;${base[i]["temp"]["morn"]}${units[0]}`;
+    fillData[place+13] = `Eve:&nbsp;${base[i]["temp"]["eve"]}${units[0]}`;
+    fillData[place+14] = `Min:&nbsp;${base[i]["temp"]["min"]}${units[0]}`;
+    fillData[place+15] = `Max:&nbsp;${base[i]["temp"]["max"]}${units[0]}`;
+    fillData[place+16] = `&#127744;&nbsp;Wind&nbsp;speed: ${base[i]["wind_speed"]}${units[1]}`;
+    fillData[place+17] = `&#10036;&nbsp;Wind&nbsp;direction ${base[i]["wind_deg"]}°`;
     
     place += 18;
   }
