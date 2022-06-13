@@ -34,7 +34,7 @@ function getCordWther(cords, index, target, option){
   let url = `${revCoding}lat=${lat}&lon=${lon}&appid=${key}`;
   fetch(url).then(res => {
     if(res.status == 200){
-      message("success");
+      message("Loading...");
       delay(2500);
       return res.json();
 }else if(res.status == 504){
@@ -56,7 +56,7 @@ function getZipData(zipCode, index, target, option){
   let url = `${cordBaseUrl}/zip?zip=${zip},${country}&appid=${key}`;
   fetch(url).then(res => {
     if(res.status == 200){
-      message("success");
+      message("Loading...");
       delay(2500);
       return res.json();
 }else if(res.status == 504){
@@ -101,7 +101,7 @@ function getCityData(cityName, index, target, option){
     url = `${cordBaseUrl}/direct?q=${cityName}&appid=${key}`;
     fetch(url).then(res => {
       if(res.status == 200){
-      message("success");
+      message("Loading...");
       delay(2500);
       return res.json();
 }else if(res.status == 504){
@@ -383,7 +383,7 @@ window.onload = function(){
 function useAlt(){
   fetch("https://ipwho.is").then(res => {
     if(res.status == 200){
-      message("success");
+      message("Loading...");
       delay(2500);
       return res.json();
 }else if(res.status == 504){
