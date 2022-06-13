@@ -2,14 +2,13 @@ var key = "8c07459f9be1805e0dcad855c72806f8";
 var callBaseUrl = "https://api.openweathermap.org/data/2.5/onecall?";
 var cordBaseUrl = "https://api.openweathermap.org/geo/1.0";
 var revCoding = "https://api.openweathermap.org/data/2.5/weather?";
-var message = document.getElementById("msgBox");
+var msg = document.getElementById("msgBox");
 var majorData;
-window.onload = function(){
-}
+
 function search(searchId){
   let value = document.getElementById(searchId).value;
   if (value ===""){
-    message.innerHTML = "search input can't be empty.";
+    msg.innerHTML = "search input can't be empty.";
   }
   else if(! value.match(/[a-zA-z]/)){
     getCordWther(value, 0, "s", "all");
@@ -23,46 +22,7 @@ function search(searchId){
   }
 }
 
-function change(){
-  let type = document.getElementById("type");
-  if(! type.checked === true){
-    document.getElementById("currentWther").style.display = "none";
-    document.getElementById("forecast").style.display = "block";
-  }else{
-    document.getElementById("currentWther").style.display = "flex";
-    document.getElementById("forecast").style.display = "none";
-  }
-}
 
-function toggleMode(){
-  let selection = document.getElementById("toggleMode");
-  let child = selection.value;
-  let min = document.getElementById("min").style;
-  let hour = document.getElementById("hour").style;
-  let daily = document.getElementById("daily").style;
-  switch (child) {
-    case 'min':
-      min.display = "block";
-      hour.display = "none";
-      daily.display = "none";
-      break;
-    case 'hour':
-      hour.display = "block";
-      min.display = "none";
-      daily.display = "none";
-      break;
-    case 'daily':
-      daily.display = "block";
-      min.display = "none";
-      hour.display = "none";
-      break;
-    default:
-      min.display = "block";
-      hour.display = "none";
-      daily.display = "none";
-      break;
-  }
-}
 
 function getCordWther(cords, index, target, option){
   cords = cords.replace(/ +/g, ',');
@@ -72,11 +32,19 @@ function getCordWther(cords, index, target, option){
   let lon = cords[1];
   let url = `${revCoding}lat=${lat}&lon=${lon}&appid=${key}`;
   fetch(url).then(res => {
-    return res.json();
+    if(res.status == 200){
+      message("success");
+      delay(2500);
+      return res.json();
+}else if(res.status == 504){
+      message ("server timeout");
+      delay(2500);
+      return res.json();
+      }
   }).then(cords => {
     cords["country"] = [cords.sys.country];
     fill(cords, index, target, option);
-  }).catch(err => {alert(err)});
+  }).catch(err => {message("an error occurred")});
 }
 function getZipData(zipCode, index, target, option){
   zipCode = zipCode.replace(/ +/g, ',');
@@ -86,11 +54,21 @@ function getZipData(zipCode, index, target, option){
   let country = zipCode[1].toUpperCase();
   let url = `${cordBaseUrl}/zip?zip=${zip},${country}&appid=${key}`;
   fetch(url).then(res => {
-    return res.json();
+    if(res.status == 200){
+      message("success");
+      delay(2500);
+      return res.json();
+}else if(res.status == 504){
+      message ("server timeout");
+      delay(2500);
+      return res.json();
+      }
   }).then(cords => {
     cords = [cords];
     fill(cords, index, target, option);
-  }).catch(err => {alert(err);});
+  }).catch(err => {message("an error occurred");
+    delay(5000);
+  });
 }
 
 function getCityData(cityName, index, target, option){
@@ -107,7 +85,7 @@ function getCityData(cityName, index, target, option){
     cityName[2] = cityName[2].toUpperCase();
     if (cityName[2] != "US"){
       cityName.splice(1,1);
-      message.innerHTML = `Only US cities can have additional state code. fetching weather for ${cityName}`;
+      msg.innerHTML = `Only US cities can have additional state code. fetching weather for ${cityName}`;
     }
   }
   else if (cityName.length == 2){
@@ -115,17 +93,27 @@ function getCityData(cityName, index, target, option){
   }
   else if (cityName.length > 3 && cityName.includes(",") === false){
     cityName.splice(1,-2);
-    message.innerHTML = "too many search input, consider seperating with comma.";
+    msg.innerHTML = "too many search input, consider seperating with comma.";
     allow = false;
   }
   if (allow){
     url = `${cordBaseUrl}/direct?q=${cityName}&appid=${key}`;
     fetch(url).then(res => {
+      if(res.status == 200){
+      message("success");
+      delay(2500);
       return res.json();
+}else if(res.status == 504){
+      message ("server timeout");
+      delay(2500);
+      return res.json();
+      }
     }).then(cords => {
       fill(cords, index, target, option);
     }).catch(err =>
-    {alert(err);});
+    {message("an error occurred");
+      delay(2500);
+    });
   }
 }
 function fill(cords, index, target, option){
@@ -167,7 +155,15 @@ function getWther(cords, index, target, option){
   }
   let url = `${callBaseUrl}lat=${lat}&lon=${lon}&appid=${key}`;
   fetch(url).then(res => {
-    return res.json();
+    if(res.status == 200){
+      message("success");
+      delay(2500);
+      return res.json();
+}else if(res.status == 504){
+      message ("server timeout");
+      delay(2500);
+      return res.json();
+      }
   }).then(data => {
     comData = [[cords],[data]];
     switch (target) {
@@ -206,7 +202,7 @@ function getWther(cords, index, target, option){
       default:
         // code
     }
-  }).catch(err => {alert(err)});
+  }).catch(err => {message("an error occurred")});
 }
 function forecastMinFill(data, index, target){
   document.getElementById(target).style.display = "block";
@@ -355,11 +351,14 @@ function forecastDailyFill(data, index, target){
 const successCallback = (position) => {
   let pos = position.coords;
   let value = `${pos.latitude} ${pos.longitude}`;
+  msg.innerHTML = JSON.stringify(value);
   getCordWther(value, 1, 'c', 'all');
 }
 const errorCallback = (error) => {
-  alert(error);
-  alert('error using built-in location navigator\n using estimated location')
+  message(error);
+  delay(6000);
+  message("error using built-in location navigator.\n 'using estimated location'");
+  delay(9000);
   useAlt();
 }
 const options = {
@@ -368,37 +367,146 @@ const options = {
   maximumAge: 0
 };
 
-if('geolocation' in navigator){
-  alert("geolocation is available, ensure you turn on device location for the app to run");
-  navigator.geolocation.getCurrentPosition(successCallback, errorCallback, options);
-}else{
-  alert("geolocation not available\n using estimated geolocation");
-  useAlt();
+window.onload = function(){
+  if('geolocation' in navigator){
+    message("geolocation is available, ensure you turn on device location for the app to run");
+    delay(9000);
+    navigator.geolocation.getCurrentPosition(successCallback, errorCallback, options);
+  }else{
+    message("geolocation not available\n using estimated geolocation");
+    delay(5000);
+    useAlt();
+  }
 }
 
 function useAlt(){
   fetch("https://ipwho.is").then(res => {
-    return res.json();
+    if(res.status == 200){
+      message("success");
+      delay(2500);
+      return res.json();
+}else if(res.status == 504){
+      message ("server timeout");
+      delay(2500);
+      return res.json();
+      }
   }).then(cords => {
     cords = `${cords["latitude"]} ${cords["longitude"]}`;
     getCordWther(cords, 1, 'c', 'all')
-  }).catch(err => {alert(err);});
+  }).catch(err => {
+    message("an error occurred");
+    delay(2500);
+  });
+}
+function delay(n){
+  start = new Date().getTime();
+  end = start + n*1000;
+  while(start < end){
+    start += 1;
+  }
 }
 
+function message(text){
+  let div = document.createElement("div");
+  text = document.createTextNode(text);
+  div.appendChild(text);
+  div.id = "messg";
+  let old = document.getElementById("messg");
+  old.parentNode.replaceChild(div, old);
+  div = document.getElementById("messg");
+  let body = document.getElementsByTagName("body")[0];
+  div = window.getComputedStyle(div);
+  div = div.width;
+  let screen = window.getComputedStyle(body);
+  screen = screen.width;
+  let leftSpace = (parseInt(screen) - parseInt(div))/2;
+  document.getElementById("messg").style.left = leftSpace.toString();
+}
+
+function change(){
+  let type = document.getElementById("type");
+  if(! type.checked === true){
+    document.getElementById("currentWther").style.display = "none";
+    document.getElementById("forecast").style.display = "block";
+  }else{
+    document.getElementById("currentWther").style.display = "flex";
+    document.getElementById("forecast").style.display = "none";
+  }
+}
+
+function toggleMode(){
+  let selection = document.getElementById("toggleMode");
+  let child = selection.value;
+  let min = document.getElementById("min").style;
+  let hour = document.getElementById("hour").style;
+  let daily = document.getElementById("daily").style;
+  switch (child) {
+    case 'min':
+      min.display = "block";
+      hour.display = "none";
+      daily.display = "none";
+      break;
+    case 'hour':
+      hour.display = "block";
+      min.display = "none";
+      daily.display = "none";
+      break;
+    case 'daily':
+      daily.display = "block";
+      min.display = "none";
+      hour.display = "none";
+      break;
+    default:
+      min.display = "block";
+      hour.display = "none";
+      daily.display = "none";
+      break;
+  }
+}
 function toggleoption(){
   let target = document.getElementById("toggle");
   if (target.checked === true){
     let option = document.getElementById("options");
     option.style.position = "fixed";
-    option.style.left = "1%";
+    option.style.left = "0";
     option.style.transition = "left 0.2s ease-in-out";
     option.style.zIndex = "2";
   }
   else if (target.checked === false){
     let option = document.getElementById("options");
     option.style.position = "fixed";
-    option.style.left = "-150vw";
+    option.style.left = "-150vw"
     option.style.transition = "left 2s ease-in-out";
     option.style.zIndex = "2";
   }
+}
+function cancHelp(){
+  document.getElementById("help").style.display = "none";
+}
+function cancAbout(){
+  document.getElementById("about").style.display = "none";
+}
+function cancContact(){
+  document.getElementById("contact").style.display = "none";
+}
+function help(){
+  document.getElementById("help").style.display = "block";
+  document.getElementById("help").style.zIndex = "3";
+}
+function about(){
+  document.getElementById("about").style.display = "block";
+  document.getElementById("about"). style.zIndex = "3";
+}
+function contact(){
+  document.getElementById("contact").style.display = "block";
+  document.getElementById("contact").style.zIndex = "3";
+}
+function wtherForecast(){
+  document.getElementById("currentWther").style.display = "none";
+  document.getElementById("forecast").style.display = "block";
+  document.getElementById("toggle").checked = false;
+  let option = document.getElementById("options");
+  option.style.position = "fixed";
+  option.style.left = "-150vw";
+  option.style.transition = "left 2s ease-in-out";
 }
