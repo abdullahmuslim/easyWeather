@@ -6,7 +6,9 @@ body{
   justify-content: center;
   align-items: center;
 }
-
+div, .temp, .citytime{
+  font-size: .85em;
+}
 input[type="checkbox"]{
   display: none;
 }
@@ -16,7 +18,7 @@ header{
   justify-content: space-around;
   align-items: center;
   text-align: center;
-  width: 100%;
+  width: 100vw;
   background: #0a5000;
 }
 header .menu, img{
@@ -200,7 +202,7 @@ header img{
 #options{
   position: fixed;
   z-index: 2;
-  top: 5em;
+  top: 6.2em;
   left: -150vw;
   transition: left 2s ease-in-out;
   background: rgb(0, 0, 0, 0.9);
@@ -421,7 +423,7 @@ a{
     transition: transform 0.4s ease-in-out;
   }
   #options{
-    top: 10em;
+    top: 12em;
   }
   .type{
     font-size: 2em;
