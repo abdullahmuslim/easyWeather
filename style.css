@@ -7,7 +7,7 @@ body{
   align-items: center;
 }
 div, .temp, .citytime{
-  font-size: .85em;
+  font-size: 1em;
 }
 input[type="checkbox"]{
   display: none;
@@ -39,7 +39,7 @@ header .type{
   cursor: pointer;
   border-bottom: 5px solid #fff;
   width: 70%;
-  transition: border-bottom 0.7s ease-in-out;
+  transition: border-bottom 0.6s ease-in-out;
 }
 .toggle:before{
   display: block;
@@ -70,8 +70,8 @@ header img{
 
 #msgBox{
   text-align: center;
-  background: #af3e3d;
   font-size: 1.3em;
+  animation: message 5s ease-in;
 }
 #optionText{
   background: #000;
@@ -202,7 +202,7 @@ header img{
 #options{
   position: fixed;
   z-index: 2;
-  top: 6.2em;
+  top: 5.2em;
   left: -150vw;
   transition: left 2s ease-in-out;
   background: rgb(0, 0, 0, 0.9);
@@ -423,7 +423,7 @@ a{
     transition: transform 0.4s ease-in-out;
   }
   #options{
-    top: 12em;
+    top: 10em;
   }
   .type{
     font-size: 2em;

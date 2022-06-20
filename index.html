@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en-US">
 <head>
-  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta property="og:title" content="easyWeather: best weather webapp">
-  <meta property="og:description" content="easily find accurate weather conditions and forecast">
-  <meta property="og:image" content="sociallogo.png">
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta property="og:title" content="easyWeather: best weather webapp"/>
+  <meta property="og:description" content="easily find accurate weather conditions and forecast"/>
+  <meta property="og:image" content="sociallogo.png"/>
   <link rel="stylesheet" href="style.css"/>
   <title>easyWeather webApp</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
   <div id="options">
@@ -86,9 +87,9 @@
       <label for="toggle" class="toggle">
       </label>
     </div>
-    <img src="logo.png" alt="logo" width="25px"/>
+    <img src="logo.png" alt="logo" width="25"/>
     <div class="type">
-      <input type="checkbox" id="type">
+      <input type="checkbox" id="type"/>
       <label class="typelabel" for="type" onClick="change()">
       </label>
     </div>
@@ -97,7 +98,7 @@
   <main>
     <div class="currentWther" id="currentWther">
       <div class="search">
-        <input type="search" id="cSearch" placeholder=" search city name" onsearch="search('cSearch')">
+        <input type="search" id="cSearch" placeholder=" search city name" onSearch="search('cSearch')"/>
         <img src="search.png" alt="search" width="5" onClick="search('cSearch')"/>
       </div>
       <div id="cs">
@@ -161,7 +162,7 @@
     <div class="forecast" id="forecast">
       <div class="fSearch">
         <div class="Search">
-          <input type="search" id="Search" onsearch="search('Search')"/>
+          <input type="search" id="Search" onSearch="search('Search')"/>
           <img src="search.png" alt="search button" width="5" onClick="search('Search')"/>
         </div>
         <div class="typetoggle">
@@ -2071,7 +2072,7 @@
       </div>
     </div>
   </main>
-  <script type="text/javascript" src="script.js"></script>
+  <script src="script.js"></script>
   <footer>
     <div class="words">all right reserved ©</div>
     <a href="https://www.facebook.com/profile.php?id=100061691281857">f</a>

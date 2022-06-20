@@ -9,7 +9,8 @@ var units = ["°c", "m/s"];
 function search(searchId){
   let value = document.getElementById(searchId).value;
   if (value ===""){
-    msg.innerHTML = "search input can't be empty.";
+    message("search input can't be empty.");
+    delay(2);
   }
   else if(! value.match(/[a-zA-z]/)){
     getCordWther(value, 0, "s", "all");
@@ -34,18 +35,16 @@ function getCordWther(cords, index, target, option){
   let url = `${revCoding}lat=${lat}&lon=${lon}&appid=${key}`;
   fetch(url).then(res => {
     if(res.status == 200){
-      message("Loading...");
-      delay(2500);
+      setTimeout(message("Loading..."), 5000);
       return res.json();
 }else if(res.status == 504){
-      message ("server timeout");
-      delay(2500);
+      setTimeout(message("server timeout"), 5000);
       return res.json();
       }
   }).then(cords => {
     cords["country"] = [cords.sys.country];
     fill(cords, index, target, option);
-  }).catch(err => {message("an error occurred")});
+  }).catch(err => {setTimeout(message("an error occurred"), 7000)});
 }
 function getZipData(zipCode, index, target, option){
   zipCode = zipCode.replace(/ +/g, ',');
@@ -57,18 +56,16 @@ function getZipData(zipCode, index, target, option){
   fetch(url).then(res => {
     if(res.status == 200){
       message("Loading...");
-      delay(2500);
       return res.json();
 }else if(res.status == 504){
-      message ("server timeout");
-      delay(2500);
+      message("server timeout");
       return res.json();
       }
   }).then(cords => {
     cords = [cords];
     fill(cords, index, target, option);
   }).catch(err => {message("an error occurred");
-    delay(5000);
+    delay(1);
   });
 }
 
@@ -86,7 +83,8 @@ function getCityData(cityName, index, target, option){
     cityName[2] = cityName[2].toUpperCase();
     if (cityName[2] != "US"){
       cityName.splice(1,1);
-      msg.innerHTML = `Only US cities can have additional state code. fetching weather for ${cityName}`;
+      message(`Only US cities can have additional state code. fetching weather for ${cityName}`);
+      delay(1.5);
     }
   }
   else if (cityName.length == 2){
@@ -94,7 +92,8 @@ function getCityData(cityName, index, target, option){
   }
   else if (cityName.length > 3 && cityName.includes(",") === false){
     cityName.splice(1,-2);
-    msg.innerHTML = "too many search input, consider seperating with comma.";
+    message("too many search input, consider seperating with comma.");
+    delay(1);
     allow = false;
   }
   if (allow){
@@ -102,18 +101,18 @@ function getCityData(cityName, index, target, option){
     fetch(url).then(res => {
       if(res.status == 200){
       message("Loading...");
-      delay(2500);
+      delay(1);
       return res.json();
 }else if(res.status == 504){
-      message ("server timeout");
-      delay(2500);
+      message("server timeout");
+      delay(1);
       return res.json();
       }
     }).then(cords => {
       fill(cords, index, target, option);
     }).catch(err =>
     {message("an error occurred");
-      delay(2500);
+      delay(1);
     });
   }
 }
@@ -157,12 +156,10 @@ function getWther(cords, index, target, option){
   let url = `${callBaseUrl}lat=${lat}&lon=${lon}&units=${unit}&appid=${key}`;
   fetch(url).then(res => {
     if(res.status == 200){
-      message("success");
-      delay(2500);
+      setTimeout(message("success"), 5000);
       return res.json();
 }else if(res.status == 504){
-      message ("server timeout");
-      delay(2500);
+      setTimeout(message("server timeout"), 5000);
       return res.json();
       }
   }).then(data => {
@@ -352,14 +349,12 @@ function forecastDailyFill(data, index, target){
 const successCallback = (position) => {
   let pos = position.coords;
   let value = `${pos.latitude} ${pos.longitude}`;
-  msg.innerHTML = JSON.stringify(value);
   getCordWther(value, 1, 'c', 'all');
 }
 const errorCallback = (error) => {
-  message(error);
-  delay(6000);
-  message("error using built-in location navigator.\n 'using estimated location'");
-  delay(9000);
+  setTimeout(message(error), 15000);
+  
+  setTimeout(message("error using built-in location navigator.\n 'using estimated location'"), 5000);
   useAlt();
 }
 const options = {
@@ -371,11 +366,10 @@ const options = {
 window.onload = function(){
   if('geolocation' in navigator){
     message("geolocation is available, ensure you turn on device location for the app to run");
-    delay(9000);
     navigator.geolocation.getCurrentPosition(successCallback, errorCallback, options);
   }else{
     message("geolocation not available\n using estimated geolocation");
-    delay(5000);
+    delay(2);
     useAlt();
   }
 }
@@ -383,27 +377,26 @@ window.onload = function(){
 function useAlt(){
   fetch("https://ipwho.is").then(res => {
     if(res.status == 200){
-      message("Loading...");
-      delay(2500);
+      setTimeout(message("Loading..."), 20000);
       return res.json();
 }else if(res.status == 504){
-      message ("server timeout");
-      delay(2500);
+      setTimeout(message("server timeout"), 20000);
       return res.json();
       }
   }).then(cords => {
     cords = `${cords["latitude"]} ${cords["longitude"]}`;
     getCordWther(cords, 1, 'c', 'all')
   }).catch(err => {
-    message("an error occurred");
-    delay(2500);
+    setTimeout(message("an error occurred"), 20000);
   });
 }
 function delay(n){
-  start = new Date().getTime();
-  end = start + n*1000;
+  start = new Date();
+  start = start.getTime();
+  end = start + n*100;
   while(start < end){
-    start += 1;
+    start = new Date()
+    start = start.getTime();
   }
 }
 
