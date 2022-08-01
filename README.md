@@ -1,3 +1,3 @@
-# easyWeather
-a simple weather display
-Visit https://easyw3ather.netlify.app/? to see the app in action.
+# **easyWeather**
+a simple __weather__ displaying app.
+[Visit app](https://code-wizard925.github.io/easyWeather/)
