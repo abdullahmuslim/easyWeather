@@ -1,7 +1,8 @@
 var key = "8c07459f9be1805e0dcad855c72806f8";
-var callBaseUrl = "https://api.openweathermap.org/data/2.5/onecall?";
+var callBaseUrl = "https://api.openweathermap.org/data/3.0/onecall?";
 var cordBaseUrl = "https://api.openweathermap.org/geo/1.0";
 var revCoding = "https://api.openweathermap.org/data/2.5/weather?";
+// callBaseUrl = revCoding;
 var unit = "metric";
 var msg = document.getElementById("msgBox");
 var units = ["°c", "m/s"];
@@ -156,13 +157,14 @@ function getWther(cords, index, target, option){
   let url = `${callBaseUrl}lat=${lat}&lon=${lon}&units=${unit}&appid=${key}`;
   fetch(url).then(res => {
     if(res.status == 200){
+      console.log(res.json());
       setTimeout(message("success"), 5000);
       return res.json();
 }else if(res.status == 504){
       setTimeout(message("server timeout"), 5000);
       return res.json();
       }
-  }).then(data => {
+  }).then(data => { 
     comData = [[cords],[data]];
     switch (target) {
       case 'c':
