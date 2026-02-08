@@ -38,7 +38,7 @@ function getCordWther(cords, index, target, option){
     if(res.status == 200){
       setTimeout(message("Loading..."), 5000);
       return res.json();
-}else if(res.status == 504){
+    }else if(res.status == 504){
       setTimeout(message("server timeout"), 5000);
       return res.json();
       }
@@ -133,11 +133,11 @@ function currentFill(data, index, target){
   cdata = cdata[index].children;
   let temp = document.getElementsByClassName("cTemp");
   temp = temp[index].children;
-  let time = new Date(data[1][0]["current"]["dt"]);
-  let rise = new Date(data[1][0]["current"]["sunrise"]);
-  let sset = new Date(data[1][0]["current"]["sunset"]);
+  let time = new Date(data[1][0]["dt"]);
+  let rise = new Date(data[1][0]["sys"]["sunrise"]);
+  let sset = new Date(data[1][0]["sys"]["sunset"]);
   let container = [country,citytime[0],citytime[1],sun[0],sun[1],cdata[1],cdata[2],cdata[3],cdata[4],cdata[5],temp[0],temp[1],cdata[7],cdata[8], cdata[9]];
-  let filldata = [`Country:&nbsp;${data[0][0]["country"]}`,`${data[0][0]["name"]}`,`${time.getHours()}&nbsp;:&nbsp;${time.getMinutes()}`,`&#127749;&nbsp;Sunrise: ${rise.getHours()}&nbsp;:&nbsp;${rise.getMinutes()}`,`&#127751;&nbsp;Sunset: ${sset.getHours()}&nbsp;:&nbsp;${sset.getMinutes()}`, `&#9729;&nbsp;Weather: ${data[1][0]["current"]["weather"][0]["main"]}`, `&#9729;&nbsp;Description: ${data[1][0]["current"]["weather"][0]["description"]}`,`&#127787;&nbsp;Visibility: ${data[1][0]["current"]["visibility"]} meters`, `&#127745;&nbsp;Humidity: ${data[1][0]["current"] ["humidity"]}%`, `&#128167;&nbsp;Dew&nbsp;point: ${data[1][0]["current"] ["dew_point"]}${units[0]}`, `&#127777;&nbsp;Temperature:&nbsp;${data[1][0]["current"]["temp"]}${units[0]}`, ` feels&nbsp;like&nbsp;${data[1][0]["current"]["feels_like"]}${units[0]}`, `&#127744;&nbsp;Wind&nbsp;speed ${data[1][0]["current"]["wind_speed"]}${units[1]}`, `&#10036;&nbsp;Wind&nbsp;Direction ${data[1][0]["current"]["wind_deg"]}°`,`&#127786;&nbsp;Wind Gust: ${data[1][0]["current"]["wind_gust"]}${units[1]}`];
+  let filldata = [`Country:&nbsp;${data[0][0]["country"]}`,`${data[0][0]["name"]}`,`${time.getHours()}&nbsp;:&nbsp;${time.getMinutes()}`,`&#127749;&nbsp;Sunrise: ${rise.getHours()}&nbsp;:&nbsp;${rise.getMinutes()}`,`&#127751;&nbsp;Sunset: ${sset.getHours()}&nbsp;:&nbsp;${sset.getMinutes()}`, `&#9729;&nbsp;Weather: ${data[1][0]["weather"][0]["main"]}`, `&#9729;&nbsp;Description: ${data[1][0]["weather"][0]["description"]}`,`&#127787;&nbsp;Visibility: ${data[1][0]["visibility"]} meters`, `&#127745;&nbsp;Humidity: ${data[1][0]["main"]["humidity"]}%`, `&#128167;&nbsp;Dew&nbsp;point: unavailable `, `&#127777;&nbsp;Temperature:&nbsp;${data[1][0]["main"]["temp"]}${units[0]}`, ` feels&nbsp;like&nbsp;${data[1][0]["main"]["feels_like"]}${units[0]}`, `&#127744;&nbsp;Wind&nbsp;speed ${data[1][0]["wind"]["speed"]}${units[1]}`, `&#10036;&nbsp;Wind&nbsp;Direction ${data[1][0]["wind"]["deg"]}°`,`&#127786;&nbsp;Wind Gust: ${data[1][0]["wind"]["gust"]}${units[1]}`];
   for (let i = 0;i < filldata.length;i++){
     container[i].innerHTML = filldata[i];
   }
@@ -154,16 +154,15 @@ function getWther(cords, index, target, option){
     lon = cords["coord"]["lon"];
     lat = cords["coord"]["lat"];
   }
-  let url = `${callBaseUrl}lat=${lat}&lon=${lon}&units=${unit}&appid=${key}`;
+  let url = `${revCoding}lat=${lat}&lon=${lon}&units=${unit}&appid=${key}`;
   fetch(url).then(res => {
     if(res.status == 200){
-      console.log(res.json());
       setTimeout(message("success"), 5000);
       return res.json();
-}else if(res.status == 504){
+    }else if(res.status == 504){
       setTimeout(message("server timeout"), 5000);
       return res.json();
-      }
+    }
   }).then(data => { 
     comData = [[cords],[data]];
     switch (target) {
@@ -183,6 +182,7 @@ function getWther(cords, index, target, option){
         if (comData[1][0]["daily"] != undefined){
           forecastDailyFill(comData, index, 'fdc');
         }
+        currentFill(comData, index, 'cc');
         break;
       case 's':
         if(comData[1][0]["current"] != undefined){
@@ -197,10 +197,12 @@ function getWther(cords, index, target, option){
         if (comData[1][0]["daily"] != undefined){
          forecastDailyFill(comData, index, 'fds');
         }
+        currentFill(comData, index, 'cs');
         break;
       
       default:
         // code
+        currentFill(comData, index, 'cs');
     }
   }).catch(err => {message("an error occurred")});
 }
